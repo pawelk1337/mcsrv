@@ -1,5 +1,9 @@
 # McSrv: A simple library for creating and managing minecraft servers.
 
+# TODO
+ - ~~Server Downloading~~
+ - Server running and Server Wrapping
+
 ## Getting started
 To download the library use the command
 `go get https://github.com/pawelk1337/mcsrv`
@@ -15,7 +19,9 @@ import (
 func main() {
     srvcfg := mc.ServerConfig{
         Engine: mc.PAPER,
-        Version: "1.20.2"
+        Version: "1.20.2",
+
+        Port: 25565,
     }
 
     // Create a server
