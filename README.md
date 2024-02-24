@@ -15,7 +15,7 @@ import (
 func main() {
     srvcfg := mc.ServerConfig{
         Engine: mc.PAPER,
-        Version: "1.20.2
+        Version: "1.20.2"
     }
 
     // Create a server
