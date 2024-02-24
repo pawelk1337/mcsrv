@@ -1,0 +1,1 @@
+# This folder contains code from https://github.com/wlwanpan/minecraft-wrapper/tree/master

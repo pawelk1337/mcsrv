@@ -72,3 +72,7 @@ func Download(url string, filepath string) error {
 
 	return nil
 }
+
+func Dbg(exp interface{}) string {
+	return fmt.Sprintf("%+v", exp)
+}

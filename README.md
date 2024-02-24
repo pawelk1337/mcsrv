@@ -2,7 +2,11 @@
 
 # TODO
  - ~~Server Downloading~~
- - Server running and Server Wrapping
+ - ~~Server running and Server Wrapping~~
+ - Make Servers Importable
+ - Add Proxy support
+ - Custom Log Handling
+ - Parsing server files
 
 ## Getting started
 To download the library use the command
