@@ -1,0 +1,1 @@
+# Server installer: mini project showcasing various functions of the library  
