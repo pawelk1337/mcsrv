@@ -92,8 +92,8 @@ func RegisterGameEvent(ev string) {
 }
 
 func LogParserFunc(line string, tick int) (events.Event, events.EventType) {
-	remove_asni := regexp.MustCompile("\u001b[^m]*?m")
-	line = remove_asni.ReplaceAllString(line, "")
+	remove_ansi := regexp.MustCompile(`\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])`)
+	line = remove_ansi.ReplaceAllString(line, "")
 
 	ll := ParseToLogLine(line)
 	if ll.output == "" {

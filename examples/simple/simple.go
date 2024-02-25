@@ -22,7 +22,6 @@ func main() {
 		MaxHeapSize:     2048, // 2 GB
 	})
 
-	// srv, err := mc.ImportServer("./server")
 	if err != nil {
 		panic(err)
 	}
@@ -34,6 +33,7 @@ func main() {
 
 	// Wait for the server to start
 	<-srv.Wrapper.Loaded()
+	println("server started")
 
 	wrp := srv.Wrapper
 
@@ -43,15 +43,13 @@ func main() {
 		println(player.Name)
 	}
 
-	wrp.GameEvents()
-
 	// Listen for events
 	for {
-		select {
-		case ev := <-wrp.GameEvents():
-			if ev.String() == mcevents.PlayerJoined {
-				wrp.Say("Hello " + ev.Data["player_name"])
-			}
+		ev := <-wrp.GameEvents()
+
+		switch ev.String() {
+		case mcevents.PlayerJoined:
+			wrp.Say("Hello " + ev.Data["player_name"])
 		}
 	}
 }

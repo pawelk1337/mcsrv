@@ -20,7 +20,7 @@ To download the library use the command
 `go get https://github.com/pawelk1337/mcsrv`
 
 To create a simple server:
-```
+```go
 import (
     mc "github.com/pawelk1337/mcsrv"
     mcsh "github.com/pawelk1337/mcsrv/shared"
@@ -54,6 +54,5 @@ func main() {
 	<-srv.Wrapper.Loaded()
 }
 ```
-
 ## More Examples
 ### Check the [examples](https://github.com/pawelk1337/mcsrv/tree/main/examples) directory

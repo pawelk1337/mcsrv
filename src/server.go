@@ -82,7 +82,7 @@ func NewServer(srvcfg *shared.ServerConfig) (srv shared.Server, err error) {
 }
 
 func ImportServer(path string) (shared.Server, error) {
-	content, err := os.ReadFile("./config.json")
+	content, err := os.ReadFile(filepath.Join(path, "server.json"))
 	if err != nil {
 		log.Fatal("Error when opening file: ", err)
 	}
