@@ -1,22 +1,24 @@
 # McSrv: A simple library for creating and managing minecraft servers.
 > Hey! We have a [WIKI](https://github.com/pawelk1337/mcsrv/wiki)!
 
-## Features
+Table of Contents
+---
+* [Features](#features)
+* [Getting started](#getting-started) 
+* [More Examples](#more-examples) 
+* [TODO](#todo) 
+* [Contact](#contact) 
+
+Features
+---
  - Server Downloading
  - Server **Events** (e.g on Player join, on Player Death, on Chat...)
  - Sending commands to server
  - Easy server creation
  - Multiple Server Engine Support
 
-# TODO
- - ~~Server Downloading~~
- - ~~Server running and Server Wrapping~~
- - ~~Make Servers Importable~~
- - Add Proxy support
- - Custom Log Handling
- - Parsing server files (e.g server.properties...)
-
-## Getting started
+Getting started
+---
 To download the library use the command
 `go get https://github.com/pawelk1337/mcsrv`
 
@@ -55,5 +57,21 @@ func main() {
 	<-srv.Wrapper.Loaded()
 }
 ```
-## More Examples
+
+More Examples
+---
 ### Check the [examples](https://github.com/pawelk1337/mcsrv/tree/main/examples) directory
+
+TODO
+---
+ - ~~Server Downloading~~
+ - ~~Server running and Server Wrapping~~
+ - ~~Make Servers Importable~~
+ - Add Proxy support
+ - Custom Log Handling
+ - Parsing server files (e.g server.properties...)
+
+Contact
+---
+You can contact me on discord: `pawelk1337` (id: 967830338116153496)
+Feel free to contact me about **anything** i will try my hardest to anwser any of your questions.
