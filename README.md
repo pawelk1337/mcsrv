@@ -1,4 +1,5 @@
 # McSrv: A simple library for creating and managing minecraft servers.
+> Hey! We have a [WIKI](https://github.com/pawelk1337/mcsrv/wiki)!
 
 ## Features
  - Server Downloading
