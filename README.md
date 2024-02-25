@@ -41,7 +41,7 @@ func main() {
 
 		InitialHeapSize: 2048, // 2 GB
 		MaxHeapSize:     2048, // 2 GB
-	})
+	}, nil)
     if err != nil {
 		panic(err)
 	}

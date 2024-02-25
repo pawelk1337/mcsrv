@@ -6,6 +6,11 @@ import (
 	mcevents "github.com/pawelk1337/mcsrv/wrapper/events"
 )
 
+// Line includes \n
+func log(line string, tick int) {
+	print(line)
+}
+
 func main() {
 	srv, err := mc.NewServer(&mcsh.ServerConfig{
 		AcceptEula: true,
@@ -20,7 +25,8 @@ func main() {
 
 		InitialHeapSize: 2048, // 2 GB
 		MaxHeapSize:     2048, // 2 GB
-	})
+	}, log)
+	// LogFunc can be nil
 
 	if err != nil {
 		panic(err)

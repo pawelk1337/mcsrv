@@ -13,7 +13,7 @@ import (
 	"github.com/pawelk1337/mcsrv/wrapper/events"
 )
 
-func NewServer(srvcfg *shared.ServerConfig) (srv shared.Server, err error) {
+func NewServer(srvcfg *shared.ServerConfig, logFunc func(line string, tick int)) (srv shared.Server, err error) {
 	// Set the default server path if it doesn't exist
 	if srvcfg.Path == "" {
 		srvcfg.Path = "./server"
@@ -65,6 +65,10 @@ func NewServer(srvcfg *shared.ServerConfig) (srv shared.Server, err error) {
 	))
 
 	logHandler := func(line string, tick int) (events.Event, events.EventType) {
+		if logFunc != nil {
+			logFunc(line, tick)
+		}
+
 		return wrapper.LogParserFunc(line, tick)
 	}
 	wrapper := wrapper.NewWrapper(
