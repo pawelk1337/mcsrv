@@ -3,11 +3,15 @@
 
 Table of Contents
 ---
-* [Features](#features)
-* [Getting started](#getting-started) 
-* [More Examples](#more-examples) 
-* [TODO](#todo) 
-* [Contact](#contact) 
+- [McSrv: A simple library for creating and managing minecraft servers.](#mcsrv-a-simple-library-for-creating-and-managing-minecraft-servers)
+	- [Table of Contents](#table-of-contents)
+	- [Features](#features)
+	- [Getting started](#getting-started)
+	- [More Examples](#more-examples)
+		- [Check the examples directory](#check-the-examples-directory)
+	- [Recommended projects](#recommended-projects)
+	- [TODO](#todo)
+	- [Contact](#contact)
 
 Features
 ---
@@ -62,6 +66,12 @@ More Examples
 ---
 ### Check the [examples](https://github.com/pawelk1337/mcsrv/tree/main/examples) directory
 
+Recommended projects
+---
+ - [Gate](https://github.com/minekube/gate) - High-Performance, Low-Memory, Lightweight, Extensible Minecraft Reverse Proxy with Excellent Multi-Protocol Version Support - Velocity/Bungee Replacement - Ready for dev and large deploy! 
+ - [Minecraft Router](https://github.com/AbandonTech/minecraftrouter) - Route Minecraft traffic from a configuration file or api. 
+ - [go-Liter](https://github.com/LiterMC/go-liter) - A proxy for Minecraft that can be extended with JavaScript 
+
 TODO
 ---
  - ~~Server Downloading~~
@@ -70,7 +80,6 @@ TODO
  - ~~Custom Log Handling~~
  - ~~Fix wrapper.Loaded()~~
  - ~~add wrapper.Stopped()~~
- - Add Proxy support
  - Parsing server files (e.g server.properties...)
 
 Contact
