@@ -3,9 +3,13 @@ package mcsrv
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
+	"strings"
 
 	"github.com/pawelk1337/mcsrv/download"
 	"github.com/pawelk1337/mcsrv/shared"
@@ -58,6 +62,19 @@ func NewServer(srvcfg *shared.ServerConfig, logFunc func(line string, tick int))
 		}
 	}
 
+	// Write serverproperties
+	srvProps, err := getServerProp(srvcfg)
+
+	eulaFile, err := os.Create(filepath.Join(srvcfg.Path, "server.properties"))
+	if err != nil {
+		return shared.Server{}, err
+	}
+	defer eulaFile.Close()
+	_, err = eulaFile.WriteString(srvProps)
+	if err != nil {
+		return shared.Server{}, err
+	}
+
 	console := wrapper.NewConsole(wrapper.JavaExecCmd(
 		filepath.Join(srvcfg.Path),
 		srvcfg.InitialHeapSize,
@@ -85,7 +102,7 @@ func NewServer(srvcfg *shared.ServerConfig, logFunc func(line string, tick int))
 	return srv, nil
 }
 
-func ImportServer(path string) (shared.Server, error) {
+func ImportServer(path string, logFunc func(line string, tick int)) (shared.Server, error) {
 	content, err := os.ReadFile(filepath.Join(path, "server.json"))
 	if err != nil {
 		log.Fatal("Error when opening file: ", err)
@@ -104,6 +121,10 @@ func ImportServer(path string) (shared.Server, error) {
 	))
 
 	logHandler := func(line string, tick int) (events.Event, events.EventType) {
+		if logFunc != nil {
+			logFunc(line, tick)
+		}
+
 		return wrapper.LogParserFunc(line, tick)
 	}
 	wrapper := wrapper.NewWrapper(
@@ -111,11 +132,13 @@ func ImportServer(path string) (shared.Server, error) {
 		logHandler,
 	)
 
-	return shared.Server{
+	srv := shared.Server{
 		Config:  srvcfg,
 		Console: console,
 		Wrapper: wrapper,
-	}, nil
+	}
+
+	return srv, nil
 }
 
 func SaveServer(srvcfg *shared.ServerConfig) error {
@@ -142,4 +165,31 @@ func SaveServer(srvcfg *shared.ServerConfig) error {
 
 	_, err = file.Write(data)
 	return err
+}
+
+func getServerProp(srvcfg *shared.ServerConfig) (props string, err error) {
+	// Get the latest server properties
+	resp, err := http.Get("https://server.properties")
+	if err != nil {
+		return "", err
+	}
+	if resp.StatusCode != 200 {
+		return "", fmt.Errorf("status code not 200 (got %s)", strconv.Itoa(resp.StatusCode))
+	}
+
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	bodyString := string(bodyBytes)
+
+	bodyString = strings.ReplaceAll(bodyString, "25565", srvcfg.Port)
+	bodyString = strings.ReplaceAll(bodyString, "server-ip=", "server-ip="+srvcfg.Host)
+	if srvcfg.Motd != "" {
+		bodyString = strings.ReplaceAll(bodyString, "A Minecraft Server", srvcfg.Motd)
+	}
+
+	return bodyString, nil
 }

@@ -24,6 +24,7 @@ type ServerConfig struct {
 
 	Port string `json:"port"` // Server port minecraft default is 25565
 	Host string `json:"host"` // Server host
+	Motd string `json:"motd"` // Server motd
 
 	InitialHeapSize int `json:"initHeap"` // Server heap sizes (In MB)
 	MaxHeapSize     int `json:"maxHeap"`  // Server heap sizes (In MB)

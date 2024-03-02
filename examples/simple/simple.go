@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	mc "github.com/pawelk1337/mcsrv"
 	mcsh "github.com/pawelk1337/mcsrv/shared"
 	mcevents "github.com/pawelk1337/mcsrv/wrapper/events"
@@ -10,6 +12,8 @@ import (
 func log(line string, tick int) {
 	print(line)
 }
+
+var stopped = false
 
 func main() {
 	srv, err := mc.NewServer(&mcsh.ServerConfig{
@@ -32,6 +36,8 @@ func main() {
 		panic(err)
 	}
 
+	srv.Console.Cmd.GetCmd().Stdin = os.Stdin
+
 	// Start the server
 	go srv.Start()
 	println("starting server")
@@ -48,6 +54,12 @@ func main() {
 	for _, player := range players {
 		println(player.Name)
 	}
+
+	go func() {
+		<-wrp.Stopped()
+		println("stopped server")
+		os.Exit(0)
+	}()
 
 	// Listen for events
 	for {

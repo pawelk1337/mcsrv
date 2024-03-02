@@ -67,11 +67,14 @@ TODO
  - ~~Server Downloading~~
  - ~~Server running and Server Wrapping~~
  - ~~Make Servers Importable~~
+ - ~~Custom Log Handling~~
+ - ~~Fix wrapper.Loaded()~~
+ - ~~add wrapper.Stopped()~~
  - Add Proxy support
- - Custom Log Handling
  - Parsing server files (e.g server.properties...)
 
 Contact
 ---
 You can contact me on discord: `pawelk1337` (id: 967830338116153496)
+
 Feel free to contact me about **anything** i will try my hardest to anwser any of your questions.

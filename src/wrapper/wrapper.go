@@ -90,6 +90,7 @@ type Wrapper struct {
 	ctxCancelFunc  context.CancelFunc
 	gameEventsChan chan (events.GameEvent)
 	loadedChan     chan bool
+	stoppedChan    chan bool
 }
 
 // NewDefaultWrapper returns a new instance of the Wrapper. This is
@@ -111,6 +112,7 @@ func NewWrapper(c Console, p LogParser) *Wrapper {
 		ctxCancelFunc:  func() {},
 		gameEventsChan: make(chan events.GameEvent, 10),
 		loadedChan:     make(chan bool, 1),
+		stoppedChan:    make(chan bool, 1),
 	}
 	wpr.newFSM()
 	return wpr
@@ -144,6 +146,7 @@ func (w *Wrapper) processLogEvents(ctx context.Context) {
 		default:
 			line, err := w.console.ReadLine()
 			if err == io.EOF {
+				w.stoppedChan <- true
 				w.updateState(events.StoppedEvent)
 				return
 			}
@@ -447,6 +450,10 @@ func (w *Wrapper) List() []Player {
 
 func (w *Wrapper) Loaded() <-chan bool {
 	return w.loadedChan
+}
+
+func (w *Wrapper) Stopped() <-chan bool {
+	return w.stoppedChan
 }
 
 // Reload reloads the server datapack.

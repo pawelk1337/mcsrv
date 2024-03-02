@@ -32,7 +32,7 @@ func Download(
 
 	// If download url was not found return an error
 	if versionDetailsDownloadURL == "" {
-		return fmt.Errorf("version %s not found", Version)
+		return fmt.Errorf("version \"%s\" not found", Version)
 	}
 
 	// Get the version details form the mojang serves
