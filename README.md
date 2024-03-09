@@ -2,6 +2,8 @@
 >
 > Hey! We have a [WIKI](https://github.com/pawelk1337/mcsrv/wiki)!
 
+![https://www.codefactor.io/repository/github/pawelk1337/mcsrv/badge/main](https://www.codefactor.io/repository/github/pawelk1337/mcsrv)
+
 Table of Contents
 ---
 
