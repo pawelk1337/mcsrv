@@ -40,33 +40,33 @@ import (
 
 func main() {
     srv, err := mc.NewServer(&mcsh.ServerConfig{
-		AcceptEula: true,
-		Path:       "./server",
+        AcceptEula: true,
+        Path:       "./server",
 
-		Engine:  mcsh.PAPER,
-		Version: "latest", // Use the latest version
-		Build:   "latest",
+        Engine:  mcsh.PAPER,
+        Version: "latest", // Use the latest version
+        Build:   "latest",
 
-		Port: "25565",
-		Host: "127.0.0.1",
+        Port: "25565",
+        Host: "127.0.0.1",
 
-		InitialHeapSize: 2048, // 2 GB
-		MaxHeapSize:     2048, // 2 GB
-	}, log) // log can be nil
-	if err != nil {
-		panic(err) // Replace with actual error handling
-	}
+        InitialHeapSize: 2048, // 2 GB
+        MaxHeapSize:     2048, // 2 GB
+    }, log) // log can be nil
+    if err != nil {
+        panic(err) // Replace with actual error handling
+    }
 
     // Start the server
- 	go srv.Start()
- 	println("starting server")
- 	defer srv.Stop()
+    go srv.Start()
+    println("starting server")
+    defer srv.Stop()
 
- 	// Wait for the server to start
- 	<-srv.Wrapper.Loaded()
+    // Wait for the server to start
+    <-srv.Wrapper.Loaded()
 
-	// Wait for the server to stop
-	<-srv.Wrapper.Stopped()
+    // Wait for the server to stop
+    <-srv.Wrapper.Stopped()
 }
 ```
 
