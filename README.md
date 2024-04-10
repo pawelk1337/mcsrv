@@ -30,8 +30,7 @@ Features
 Getting started
 ---
 
-To download the library use the command
-`go get https://github.com/pawelk1337/mcsrv`
+To download the library download the source and put it in to your project's vendor dir. ({myproj}/vendor/mcsrv) and import it by using "github.com/pawelk1337/mcsrv". Make sure to add ./vendor to your go.work file
 
 To create a simple server:
 
